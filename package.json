@@ -1,0 +1,32 @@
+{
+  "name": "nodeunit-tape-compat",
+  "version": "0.9.0",
+  "description": "Run nodeunit test cases with much faster and actively developed tape.",
+  "dependencies": {
+    "scramjet": "^4.15.4",
+    "tape": "^4.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-node": "^6.0.1"
+  },
+  "bin": "bin",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/signicode/gulp-nodeunit-tape-compat.git"
+  },
+  "keywords": [
+    "nodeunit",
+    "tape",
+    "test"
+  ],
+  "author": "Signicode <open-source@signicode.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/signicode/gulp-nodeunit-tape-compat/issues"
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}
