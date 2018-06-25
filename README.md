@@ -1,21 +1,21 @@
 # nodeunit-tape-compat
 
-[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
+A [`nodeunit`](https://npmjs.com/package/nodeunit) compatible runner based on [`tape`](https://npmjs.com/package/tape) for lazy people like me that don't want to review 1000 files and change two function signatures in every one...
 
-A [`nodeunit`](https://npmjs.com/package/nodeunit) compatible runner based on tape for lazy people like me that don't want to review 1000 files and change two function signatures in every one...
+Simply take your `nodeunit` files and this will run your tests with tape, removing legacy dependencies on non supported `nodeunit`.
 
-Simply take your `nodeunit` files and this will run your tests with tap, removing legacy dependencies on non supported `nodeunit`.
+If this is not fully compatible with nodeunit, please open an issue with an example test.
 
 ## Usage
 
 From command line:
 
 ```bash
-npm i nodeunit-tape-compat
+npm i -g nodeunit-tape-compat
 nodeunit-tape <path-to-file> <path-to-file>
 ```
 
-In package JSON:
+In package JSON (remember to `npm i -D nodeunit-tape-compat`):
 
 ```json
     "test": "nodeunit-tape-compat ./test/**/*.js"

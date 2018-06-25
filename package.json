@@ -13,7 +13,7 @@
     "eslint-plugin-node": "^6.0.1"
   },
   "bin": {
-    "nodeunitt": "bin/run"
+    "nodeunit-tape": "bin/run"
   },
   "repository": {
     "type": "git",
