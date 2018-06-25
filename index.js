@@ -43,13 +43,15 @@ const flattenTests = ({tests, conf = {}, prefix = ''}) => {
         tests: Object.keys(tests)
             .reduce((acc, name) => {
                 if (typeof tests[name] === "function") {
+                    const test = tests[name];
                     acc.push({
                         name: `${prefix}/${name}`,
                         conf,
                         async exec(t) {
                             try {
-                                await tests[name](tTest(t));
+                                await test(tTest(t));
                             } catch(e) {
+                                console.log(name, test);
                                 t.fail(e);
                                 t.done();
                             }
@@ -110,8 +112,14 @@ const runTests = ({name, tests}) => {
         }));
 };
 
-module.exports = (conf) => {
-    return new DataStream()
+/**
+ * Returns a transform stream that should be fed with file objects and runs tests.
+ *
+ * @param {Object} conf configuration for tape
+ * @returns {DataStream} stream of test results.
+ */
+module.exports = (stream, conf) => {
+    return DataStream.from(stream)
         .map(({path}) => ({
             prefix: _path.basename(path).replace(/\.js$/, ''),
             conf,
@@ -119,6 +127,7 @@ module.exports = (conf) => {
         }))
         .map(flattenTests)
         .map(runTests)
+        .tap()
         .until(
             ({name, ok}) => {
                 if (!ok) {
@@ -128,6 +137,16 @@ module.exports = (conf) => {
             }
         );
 };
+
+/**
+ * Runs test on any {Readable} stream of file.
+ *
+ * @param {Readable} stream stream of file entries
+ * @param {Object} conf
+ */
+module.exports.from = async (stream, conf) => DataStream.from(stream)
+    .use(module.exports, conf)
+    .run();
 
 module.exports.flattenTests = flattenTests;
 module.exports.runTests = runTests;

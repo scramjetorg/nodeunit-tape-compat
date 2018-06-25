@@ -1,8 +1,16 @@
 #!/usr/bin/env node
 
 const { DataStream } = require('scramjet');
-const path = require('path');
+const gs = require('glob-stream');
 const tapeRunner = require('../');
 
-DataStream.from([{path: path.resolve(process.cwd(), process.argv[2])}])
-    .pipe(tapeRunner({timeout: 10000}));
+DataStream.from(gs(process.argv.slice(2)))
+    .use(tapeRunner, {timeout: 10000})
+    .run()
+    .then(() => {
+        console.error("✔ Tests succeeded.");
+    })
+    .catch(() => {
+        console.error("✘ Some tests failed.");
+        process.exit(1);
+    });
