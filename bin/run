@@ -2,15 +2,16 @@
 
 const { DataStream } = require('scramjet');
 const gs = require('glob-stream');
-const tapeRunner = require('../');
 
 DataStream.from(gs(process.argv.slice(2)))
-    .use(tapeRunner, {timeout: 10000})
+    .use("../", {timeout: 10000})
     .run()
     .then(() => {
         console.error("✔ Tests succeeded.");
     })
-    .catch(() => {
+    .catch(e => {
         console.error("✘ Some tests failed.");
+        if (process.env.DEBUG && process.env.DEBUG.match('nodeunit'))
+            console.error(e.stack);
         process.exit(1);
     });
