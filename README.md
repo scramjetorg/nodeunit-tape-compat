@@ -11,9 +11,14 @@ If this is not fully compatible with nodeunit, please open an issue with an exam
 From command line:
 
 ```bash
+# -- with global install --
 npm i -g nodeunit-tape-compat
 nodeunit-tape <path-to-file> <path-to-file>
+# -- or simply --
+npx nodeunit-tape-compat <path-to-file> <path-to-file> [-t]
 ```
+
+The `-t` flag runs only methods starting with "test".
 
 In package JSON (remember to `npm i -D nodeunit-tape-compat`):
 

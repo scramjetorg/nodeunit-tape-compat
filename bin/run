@@ -2,9 +2,10 @@
 
 const { DataStream } = require('scramjet');
 const gs = require('glob-stream');
+const {t: testOnly, _} = require('minimist')(process.argv.slice(2), {boolean: ["t"]});
 
-DataStream.from(gs(process.argv.slice(2)))
-    .use("../", {timeout: 10000})
+DataStream.from(gs(_))
+    .use("../", {timeout: 10000, testOnly})
     .run()
     .then(() => {
         console.error("✔ Tests succeeded.");
