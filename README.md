@@ -23,7 +23,7 @@ The `-t` flag runs only methods starting with "test".
 In package JSON (remember to `npm i -D nodeunit-tape-compat`):
 
 ```json
-    "test": "nodeunit-tape-compat ./test/**/*.js"
+    "test": "nodeunit-tape ./test/**/*.js"
 ```
 
 From node.js:
