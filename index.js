@@ -26,7 +26,7 @@ const reporter = ({tests, name}) => {
         ({ok, operator, actual, expected, name, error}) => {
             console.error('    ', ok ? "✓" : "✗", `${operator}(${name})`);
             if (error) {
-                console.error('    ', error);
+                console.error('    ', error && error.stack);
             }
             if (!ok && actual) {
                 console.error('     => actual:', actual, 'expected:', expected);
@@ -37,12 +37,12 @@ const reporter = ({tests, name}) => {
     return {name, ok};
 };
 
-const flattenTests = ({tests, conf = {}, prefix = ''}) => {
+const flattenTests = ({tests, conf: {testOnly, ...conf} = {}, prefix = ''}) => {
     return {
         name: prefix,
         tests: Object.keys(tests)
             .reduce((acc, name) => {
-                if (typeof tests[name] === "function") {
+                if (typeof tests[name] === "function" && (!testOnly || name.startsWith("test"))) {
                     const test = tests[name];
                     acc.push({
                         name: `${prefix}/${name}`,
@@ -62,6 +62,7 @@ const flattenTests = ({tests, conf = {}, prefix = ''}) => {
                 } else if (typeof tests[name] === "object") {
                     return acc.concat(flattenTests({tests: tests[name], conf, prefix: prefix + '/' + name}).tests);
                 }
+                return acc;
             }, [])
     };
 };
@@ -89,7 +90,7 @@ const runTests = ({name, tests}) => {
                         }
                         current.tests.push(chunk);
                         break;
-                    case "end": // eslint-disable-line
+                    case "end": // eslint-disable-next-line
                         const last = current;
                         current = null;
                         return acc.whenWrote(last);
