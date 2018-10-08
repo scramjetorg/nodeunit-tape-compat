@@ -120,8 +120,8 @@ const runTests = ({name, tests}) => {
  */
 module.exports = (stream, conf) => {
     // cleanup environment before running tests.
-    delete require.cache['scramjet'];
-    delete require.cache['scramjet-core'];
+    delete require.cache["scramjet"];
+    delete require.cache["scramjet-core"];
 
     return DataStream.from(stream)
         .map(({path}) => ({
