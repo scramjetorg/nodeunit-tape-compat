@@ -1,6 +1,6 @@
 {
   "name": "nodeunit-tape-compat",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Run nodeunit test cases with much faster and actively developed tape.",
   "dependencies": {
     "glob-stream": "^6.1.0",
