@@ -16,20 +16,20 @@ const tTest = (t) => {
 };
 
 const _path = require('path');
-
 const reporter = ({tests, name}) => {
     const ok = !tests.find(({ok}) => !ok);
 
     console.error(ok ? "✓" : "✗", name);
 
     tests.forEach(
-        ({ok, operator, actual, expected, name, error}) => {
-            console.error('    ', ok ? "✓" : "✗", `${operator}(${name})`);
+        (args) => {
+            const {ok, operator, actual, expected, name, error} = args;
+            console.error('  ', ok ? "✓" : "✗", `${operator}(${name})`);
             if (error) {
-                console.error('    ', error && error.stack);
+                console.error('   !', error.message);
             }
             if (!ok && actual) {
-                console.error('     => actual:', actual, 'expected:', expected);
+                console.error('   => actual:', actual, 'expected:', expected);
             }
         }
     );
@@ -51,8 +51,7 @@ const flattenTests = ({tests, conf: {testOnly, ...conf} = {}, prefix = ''}) => {
                             try {
                                 await test(tTest(t));
                             } catch(e) {
-                                console.log(name, test);
-                                t.fail(e);
+                                t.fail(e.stack.replace(/\n /g, '\n   '));
                                 t.done();
                             }
                         }
@@ -120,6 +119,10 @@ const runTests = ({name, tests}) => {
  * @returns {DataStream} stream of test results.
  */
 module.exports = (stream, conf) => {
+    // cleanup environment before running tests.
+    delete require.cache['scramjet'];
+    delete require.cache['scramjet-core'];
+
     return DataStream.from(stream)
         .map(({path}) => ({
             prefix: _path.basename(path).replace(/\.js$/, ''),
