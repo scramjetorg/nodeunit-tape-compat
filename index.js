@@ -123,11 +123,23 @@ module.exports = (stream, conf) => {
     delete require.cache["scramjet"];
     delete require.cache["scramjet-core"];
 
+    const safeRequire = (path) => {
+        try {
+            return require(path);
+        } catch(e) {
+            return {
+                test_require: () => {
+                    throw e;
+                }
+            };
+        }
+    };
+
     return DataStream.from(stream)
         .map(({path}) => ({
             prefix: _path.basename(path).replace(/\.js$/, ''),
             conf,
-            tests: require(path)
+            tests: safeRequire(path)
         }))
         .map(flattenTests)
         .map(runTests)
