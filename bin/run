@@ -4,6 +4,11 @@ const { DataStream } = require('scramjet');
 const gs = require('glob-stream');
 const {t: testOnly, _} = require('minimist')(process.argv.slice(2), {boolean: ["t"]});
 
+if (!_.length) {
+    console.error("Usage: nodeunit-tape [-t] [-d] file1 ...");
+    console.error("       -t only run tests starting with 'test'");
+}
+
 DataStream.from(gs(_))
     .use("../", {timeout: 10000, testOnly})
     .run()
