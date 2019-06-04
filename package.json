@@ -5,13 +5,13 @@
   "dependencies": {
     "glob-stream": "^6.1.0",
     "minimist": "^1.2.0",
-    "scramjet": "^4.24.2",
-    "tape": "^4.10.1"
+    "scramjet": "^4.25.0",
+    "tape": "^4.10.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-defaults": "^9.0.0",
-    "eslint-plugin-node": "^9.0.1"
+    "eslint-plugin-node": "^9.1.0"
   },
   "bin": {
     "nodeunit-tape": "bin/run"
