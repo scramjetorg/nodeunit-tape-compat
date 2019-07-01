@@ -6,10 +6,10 @@
     "glob-stream": "^6.1.0",
     "minimist": "^1.2.0",
     "scramjet": "^4.25.2",
-    "tape": "^4.10.2"
+    "tape": "^4.11.0"
   },
   "devDependencies": {
-    "eslint": "^6.0.0",
+    "eslint": "^6.0.1",
     "eslint-config-defaults": "^9.0.0",
     "eslint-plugin-node": "^9.1.0"
   },
