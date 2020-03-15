@@ -4,9 +4,9 @@
   "description": "Run nodeunit test cases with much faster and actively developed tape.",
   "dependencies": {
     "glob-stream": "^6.1.0",
-    "minimist": "^1.2.0",
-    "scramjet": "^4.28.1",
-    "tape": "^4.13.0"
+    "minimist": "^1.2.5",
+    "scramjet": "^4.28.2",
+    "tape": "^4.13.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
