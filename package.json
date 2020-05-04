@@ -6,7 +6,7 @@
     "glob-stream": "^6.1.0",
     "minimist": "^1.2.5",
     "scramjet": "^4.28.7",
-    "tape": "^5.0.0"
+    "tape": "=4"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
