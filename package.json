@@ -5,7 +5,7 @@
   "dependencies": {
     "glob-stream": "^6.1.0",
     "minimist": "^1.2.5",
-    "scramjet": "^4.34.5",
+    "scramjet": "^4.34.6",
     "tape": "=4"
   },
   "devDependencies": {
