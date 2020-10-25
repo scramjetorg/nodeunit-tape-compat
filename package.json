@@ -16,6 +16,7 @@
   "bin": {
     "nodeunit-tape": "bin/run"
   },
+  "scripts": {"test": "true"},
   "repository": {
     "type": "git",
     "url": "git://github.com/signicode/nodeunit-tape-compat.git"
