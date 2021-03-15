@@ -1,8 +1,12 @@
-sudo: false
 language: node_js
 node_js:
   - "node"
   - "14"
+  - "12"
+  - "10"
+script: npm test
+before_install:
+  - npm i -g npm
 cache:
   apt: true
   directories:
