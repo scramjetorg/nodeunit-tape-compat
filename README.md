@@ -48,7 +48,7 @@ tapeRunner.from(gs(process.argv.slice(2)))
 
 ### As a module
 
-module.exports = [scramjet module](https://github.com/signicode/scramjet/blob/master/docs/data-stream.md#DataStream+use)
+module.exports = [scramjet module](https://github.com/scramjetorg/scramjet/blob/master/docs/data-stream.md#DataStream+use)
 
 To be used on a [`scramjet`](https://www.npmjs.com/package/scramjet/) stream of files like this:
 

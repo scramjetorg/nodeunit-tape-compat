@@ -9,7 +9,7 @@
     "tape": "=4"
   },
   "devDependencies": {
-    "eslint": "^7.22.0",
+    "eslint": "^7.23.0",
     "eslint-config-defaults": "^9.0.0",
     "eslint-plugin-node": "^11.1.0"
   },
@@ -21,17 +21,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/signicode/nodeunit-tape-compat.git"
+    "url": "git://github.com/scramjetorg/nodeunit-tape-compat.git"
   },
   "keywords": [
     "nodeunit",
     "tape",
     "test"
   ],
-  "author": "Signicode <open-source@signicode.com>",
+  "author": "Scramjet <open-source@scramjet.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/signicode/nodeunit-tape-compat/issues"
+    "url": "https://github.com/scramjetorg/nodeunit-tape-compat/issues"
   },
   "engines": {
     "node": ">=8.6"
