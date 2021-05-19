@@ -66,11 +66,13 @@ const flattenTests = ({tests, conf: {testOnly, ...conf} = {}, prefix = ''}) => {
     };
 };
 
-const runTests = ({name, tests}) => {
+const runTests = ({name, tests, testTimeout = 5000}) => {
     const harness = test.createHarness();
 
     let current = null;
     const acc = new DataStream;
+
+    let to;
 
     harness.createStream({objectMode: true})
         .pipe(new DataStream)
@@ -80,6 +82,11 @@ const runTests = ({name, tests}) => {
                         current = Object.assign({}, chunk, {
                             tests: []
                         });
+                        clearTimeout(to);
+                        to = setTimeout(() => acc.raise(Object.assign(
+                            new Error("Test timeouted or exited without ending")),
+                            {chunk}
+                        ), testTimeout)
                         break;
                     case "assert":
                         if (!current) {
@@ -92,10 +99,14 @@ const runTests = ({name, tests}) => {
                     case "end": // eslint-disable-next-line
                         const last = current;
                         current = null;
+                        clearTimeout(to);
                         return acc.whenWrote(last);
                 }
             })
-            .on("end", () => acc.end())
+            .on("end", () => {
+                acc.end()
+            })
+            .resume()
         ;
 
     DataStream.fromArray(tests)
