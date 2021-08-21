@@ -5,11 +5,11 @@
   "dependencies": {
     "glob-stream": "^6.1.0",
     "minimist": "^1.2.5",
-    "scramjet": "^4.35.17",
+    "scramjet": "^4.35.20",
     "tape": "=4"
   },
   "devDependencies": {
-    "eslint": "^7.28.0",
+    "eslint": "^7.32.0",
     "eslint-config-defaults": "^9.0.0",
     "eslint-plugin-node": "^11.1.0"
   },
