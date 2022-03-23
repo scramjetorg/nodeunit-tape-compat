@@ -4,7 +4,7 @@
   "description": "Run nodeunit test cases with much faster and actively developed tape.",
   "dependencies": {
     "glob-stream": "^7.0.0",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "scramjet": "^4.36.2",
     "tape": "=4"
   },
